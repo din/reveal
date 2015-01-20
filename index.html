@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>Simple Gestures</title>  
+        <meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />    
+        <link href='http://fonts.googleapis.com/css?family=Open Sans|Open Sans Condensed' rel='stylesheet' type='text/css' />
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+        <script type="text/javascript">
+
+        $(function()
+        {
+            hljs.configure({useBR : false, languages : ["css", "javascript", "json"]});
+            
+            $('div.code, span.code').each(function(i, block) 
+            {
+                hljs.highlightBlock(block);
+            });
+        });
+
+        </script>
+
+        <link rel="stylesheet" href="lib/reveal.css" /> 
+        <script type="text/javascript" src="lib/reveal.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css" />       
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+
+        <div class="description">
+
+            <h1>Reveal  <a class="github" href="http://github.com/mmth/reveal">View on GitHub</a></h1>
+            <h2>gesture-based actions library for jquery</h2>
+
+
+            <h3>Preamble</h3>
+            <p>Reveal implements gesture-based context actions for list elements, cards, and menus. It can be used to embed context actions and dialogues that can be revealed by performing a simple gesture with their mouse, touchpad, or fingers. 
+            </p>
+            <p>Reveal is good when you need to provide users with a lot of context actions, but don't want to clutter the user interface. All actions remain hidden unless user makes a specific gesture. 
+            </p>
+
+            <h3>Installation</h3>
+            <p>The only requirement for this library is jQuery. Make sure you use at least version 2.1.x.
+            </p>
+            <p>Copy <span class="code">reveal.js</span> and <span class="code">reveal.css</span> to your project's folder and include them into your web-page as you usually do.
+            </p>
+            <p>If you prefer, you can install it via Bower instead:
+            </p>
+
+            <div class="code">$ bower install mmth-reveal</div>
+
+            <h3>Context actions</h3>
+            <p>Use the <span class="code">revealActions</span> function to append context actions to any element on your web-page, excluding <span class="code css">document</span> and <span class="code css">body</span>. The function accepts two arguments.</p>
+
+            <p>The <span class="code">actions</span> argument is mandatory. It must contain a hash of actions with attachments as keys of the hash. There can be several actions for a single attachment. By default Reveal is fine-tuned to handle up to two actions for a single attachment. An example of the actions list is as follows:
+            </p>
+
+            <div class="code javascript">{ "left" : "Postpone", "right" : ["Edit", "Remove"] }</div> 
+
+            <p>As you can see, you don't need to enclose an action in square brackets if it is the only one for the attachment. You can use HTML elements rather than strings, but make sure to add the <span class="code">rel-name</span> attribute to it: 
+            </p>
+
+            <div class="code javascript">{ "right" : $("&lt;img rel-name='edit' src='/my/image.png' /&gt;") }</div>
+
+            You can even use a function to define actions for your attachments. This may be especially useful while working on huge dynamic lists. <span class="code">this</span> inside the function will be set to the current unwrapped element. The function must return a single action or an array of actions:
+
+            <div class="code">{ "right" : function() 
+            { 
+              return $(this).hasClass("done") ? "undo" : "done";
+            }}</div>
+
+            <p>The second argument <span class="code">defaults</span> is optional. You can use it to alter the default behaviour and visual properties of context actions. You can find the list of all available properties below:
+            </p>
+
+            <dl>
+                <dt><span class="code">complete</span></dt>
+                <dd>Callback function. Called when one of context actions for the element was selected. Reveal passes an object to the callback with the <span class="code">action</span>, <span class="code">attachment</span>, <span class="code">element</span>, and <span class="code">wrapper</span> keys set.</dd>
+                <dt><span class="code">cancel</span></dt>
+                <dd>Callback function. Called when no context action was selected while performing a gesture. Reveal passes an object to the callback with the <span class="code">element</span> key set.</dd>
+                <dt><span class="code">actions_css_prefix</span></dt>
+                <dd>This prefix is used while appending a CSS-class with an active action name to the element. Default value is <span class="code">reveal-action-</span>.</dd>
+                <dt><span class="code">activation_threshold</span></dt>
+                <dd>Determines whether the gesture is 'strong' enough to call the <span class="code">complete</span> function (if exists). If it is not 'strong' enough, the <span class="code">cancel</span> function is called instead (if exists). The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's width or height. Default value is <span class="code">0.4</span>.</dd>
+                <dt><span class="code">offscreen_element_size</span></dt>
+                <dd>Maximum size (width or height) of the container for context actions embedded into the element. The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's dimensions. Default value is <span class="code">0.5</span>.</dd>
+                <dt><span class="code">action_element_size</span></dt>
+                <dd>Maximum size (width or height) of a single context action embedded into the element. The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's dimensions. Default value is <span class="code">0.5</span>.</dd>
+            </dl>
+
+            <p>Adjust the values of <span class="code">activation_threshold</span>, <span class="code">offscreen_size</span>, and <span class="code">action_element_size</span> to achieve better usability for elements with various amount of actions and various sizes.
+            </p>
+
+            <p>The basic context action is rendered like this (try dragging it to the left or to the right):
+            </p>
+
+            <div class="example">
+                <div class="example-context">A document to modify</div>
+                <script type="text/javascript">
+                $(".example-context").revealActions({ "left" : "Review", "right" : ["Edit", "Remove"] },
+                                                    { "action_css_prefix" : "example-context-", 
+                                                      "complete" : function(data) 
+                                                      { data.element.text("Selected " + data.action) }});
+                </script>
+            </div>
+
+            <div class="code">$(".example-context").revealActions
+(
+  { "left" : "Review", "right" : ["Edit", "Remove"] }, 
+  { "action_css_prefix" : "example-context-",
+    "complete" : function(data) 
+                 { data.element.text("Selected " + data.action); }   
+  }
+);</div>
+
+            <p>Reveal doesn't make any assumptions regarding the style of actions you define, so you must write your own styles for actions. For the aforementioned example we had to write the following set of CSS-classes:</p>
+
+            <div class="code">.example-context-edit { background: green; }
+.example-context-remove { background: red; }
+.example-context-review { background: orange; }
+</div>
+
+            <p>The next example features actions attached to the top of the container:</p>
+
+            <div class="example">
+            <div class="example-context-v">Slices of pizza</div>
+                <script type="text/javascript">
+                $(".example-context-v").revealActions({ "top" : ["Yummy", "Delicious"] },
+                                                    { "action_css_prefix" : "example-context-v-",
+                                                      "activation_threshold" : 0.7, 
+                                                      "complete" : function(data) 
+                                                      { data.element.text("Selected " + data.action) }});
+                </script>
+            </div>
+
+            <div class="code">$(".example-context-v").revealActions(
+  { "top" : ["Yummy", "Delicious"] },
+  { "action_css_prefix" : "example-context-v-", 
+    "activation_threshold" : 0.7, 
+    "complete" : function(data) 
+                 { data.element.text("Selected " + data.action + "."); }
+  }
+);</div>
+
+            <p>You can use it on multiple elements at once with functions instead of actions:
+            </p>
+
+            <div class="example">
+            <ul class="example-list">
+                <li>Tomatoes</li>
+                <li>Potatoes</li>
+                <li>Corn</li>
+            </ul>
+                <script type="text/javascript">
+                $(".example-list li").revealActions({ "right" : function() { return $(this).hasClass("bought") ? "Sell" : "Buy";  } },
+                                                    { "action_css_prefix" : "example-list-",
+                                                      "complete" : function(data) 
+                                                      {
+                                                            if (data.action == "Buy")
+                                                            {
+                                                                data.element.addClass("bought");
+                                                            } 
+                                                            else
+                                                            {
+                                                                data.element.removeClass("bought");
+                                                            }
+                                                      }});
+                </script>
+            </div>
+
+            <div class="code">$(".example-list li").revealActions
+(
+  { "right" : function() 
+              { 
+                return $(this).hasClass("bought") ? "Sell" : "Buy";  
+              } 
+  },
+  { "action_css_prefix" : "example-list-",
+    "complete" : function(data) 
+                 {
+                   if (data.action == "Buy")
+                   {
+                     data.element.addClass("bought");
+                   } 
+                   else
+                   {
+                     data.element.removeClass("bought");
+                   }
+                 }
+  }
+);</div>
+
+            <h3>Questions and feedback</h3>
+            <p>You can ask questions by tweeting to <a href="http://twitter.com/dinqe">@dinqe</a>
+            or <a href="http://twitter.com/mmth">@mmth</a>. You can write us to <a href="mailto:d@mmth.us">our email</a> as well.
+            </p>
+
+            <h3>License</h3>
+
+            <p>Reveal is licensed under the <a href="http://opensource.org/licenses/MIT">MIT</a> license. 
+            </p>
+
+        </div>
+
+    </body>
+</html>

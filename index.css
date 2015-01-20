@@ -1,0 +1,236 @@
+
+body, html
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #444;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a
+{
+    color: #555;
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
+h1
+{
+    text-transform: lowercase;
+    color: #000;
+    position: relative;
+    left: -3px;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -2px;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 78px;
+}
+
+h2
+{
+    color: #666;
+    margin: 5px 0 40px 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+h1 .github
+{
+    border-radius: 3px;
+    padding: 8px 14px;
+    border: solid 1px #eee;
+    font-weight: 400;
+    color: #aaa;
+    border: 1px solid #d4d4d4;
+    text-transform: none;
+    top: 30px;
+    right: 0;
+    letter-spacing: normal;
+    position: absolute;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+    font:16px/normal "Open Sans", sans-serif;
+    color: #333;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -moz-background-clip: padding; /* for Firefox 3.6 */
+    background-clip: padding-box;
+}
+
+h1 .github:hover
+{
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f0f0f0), to(#ececec));
+    background-image: -moz-linear-gradient(#f0f0f0, #ececec);
+    background-image: -ms-linear-gradient(#f0f0f0, #ececec);
+    background-image: -o-linear-gradient(#f0f0f0, #ececec);
+    background-image: linear-gradient(#f0f0f0, #ececec);
+}
+
+h3
+{
+    font-weight: 300;
+    color: #000;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 4px;
+}
+
+p
+{
+    margin-top: 6px;
+}
+
+dl dt
+{
+    font-size: 15px;
+}
+
+dl dd
+{
+    padding-top: 4px;
+    padding-bottom: 14px;
+}
+
+.hljs
+{
+    white-space: pre;
+    margin: 20px 0 25px 0; 
+    padding: 0;
+    background: transparent; 
+    font-family: "Monaco", "Courier New";
+    font-size: 12px;
+}
+
+span.hljs 
+{ 
+    font-size: inherit;
+    display: inline;  
+}
+
+.description
+{
+    margin: 30px auto 50px auto;
+    width: 560px;
+}
+
+/* Examples */
+
+.example
+{
+    display: block;
+    padding: 14px 0 10px 0;
+}
+
+.example-context
+{
+    width: 190px;
+    background: #eee;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    height: 60px;
+    font-size: 14px;
+    font-family: "Open Sans Condensed";
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+}
+
+.example-context-edit
+{
+    background: green;
+}
+
+.example-context-remove
+{
+    background: red;
+}
+
+.example-context-review
+{
+    background: orange;
+}
+
+.example-context-v
+{
+    width: 180px;
+    background: #eee;
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    height: 120px;
+    font-size: 14px;
+    font-family: "Open Sans Condensed";
+    font-weight: 600;
+    text-align: center;
+    line-height: 120px;
+    text-transform: uppercase;
+}
+
+.example-context-v-yummy
+{
+    background: blue;
+}
+
+.example-context-v-delicious
+{
+    background: darkblue;
+}
+
+.example-context-v .reveal-offscreen
+{
+    transition: background 0.3s;
+}
+
+.example-list 
+{
+    overflow: hidden;
+    border: solid 1px #eee;
+    color: #999;
+    width: 200px;
+    font-family: "Open Sans Condensed";
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.example-list li
+{
+    background: #fafafa;
+    padding: 10px 12px;
+    line-height: 20px;
+    border-bottom: solid 1px #eee;
+}
+
+.example-list li:last-child { border-bottom: none; }
+
+.example-list li.bought
+{
+    font-weight: bolder;
+    color: red;
+}
+
+.example-list-buy
+{
+    background: red;
+}
+
+.example-list-sell
+{
+    background: green;
+}
