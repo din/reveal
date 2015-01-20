@@ -1,0 +1,60 @@
+ /* Reveal CSS */
+
+.reveal-body
+{
+    cursor: default;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.reveal-root
+{
+    cursor: default;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;  
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-content
+{
+    z-index: 100;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.reveal-offscreen
+{
+    text-align: center;
+    overflow: hidden;
+    z-index: 1000;
+    position: absolute;
+    background: #aaa;
+}
+
+.reveal-offscreen strong
+{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    font-weight: inherit;
+    font-size: inherit;
+    color: #fff;
+    line-height: 1;
+    transform: translate(-50%, -50%);    
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.reveal-offscreen-right { top: 0; right: 0; bottom: 0; } 
+.reveal-offscreen-left { top: 0; bottom: 0; left: 0; }
+.reveal-offscreen-top { left: 0; right: 0; top: 0; }
+.reveal-offscreen-bottom { left: 0; right: 0; bottom: 0; }

@@ -1,0 +1,27 @@
+{
+  "name": "mmth-reveal",
+  "version": "1.0.0",
+  "authors": [
+    "Daniel Vershinin <d@sgml.me>"
+  ],
+  "description": "jQuery library for gesture-based context actions.",
+  "main": ["lib/reveal.js", "lib/reveal.css"],
+  "keywords": [
+    "jquery",
+    "gestures",
+    "swipe",
+    "context",
+    "ui",
+    "javascript"
+  ],
+  "dependencies" : { 
+    "jquery" : "~2.0" 
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "docs",
+    "index.css",
+    "index.html"
+  ]
+}
