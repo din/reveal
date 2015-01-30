@@ -70,11 +70,13 @@
     -webkit-font-smoothing: subpixel-antialiased;
     position: fixed;
     z-index: 10000;
+    cursor: -webkit-grab;
 }
 
 .reveal-doc-container > div
 {
     display: none;
+   	cursor: auto;
     position: absolute;
 }
 
