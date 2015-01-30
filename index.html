@@ -1,29 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
-        <title>Simple Gestures</title>  
+        <title>Reveal: jQuery Gestures</title>  
         <meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />    
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css' />
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+        
+        <link rel="stylesheet" href="lib/reveal.css" /> 
+        <script type="text/javascript" src="lib/reveal.js"></script>
+
         <script type="text/javascript">
 
         $(function()
         {
-            hljs.configure({useBR : false, languages : ["css", "javascript", "json"]});
-            
-            $('div.code, span.code').each(function(i, block) 
-            {
-                hljs.highlightBlock(block);
-            });
+          hljs.configure({useBR : false, languages : ["css", "javascript", "json"]});
+          
+          $('div.code, span.code').each(function(i, block) 
+          {
+              hljs.highlightBlock(block);
+          });
+
+          $(document).revealContext({ "left" : { "offscreen" : true, "content" : $("<div style='color: #aaa;margin-top: 200px; font-size: 20px; text-align: center;'>LEFT</div>") }, "top" : { "content" : $("<div style='color: #aaa;margin-top: 80px; font-size: 20px; text-align: center;'>TOP</div>") } });
+
         });
 
         </script>
-
-        <link rel="stylesheet" href="lib/reveal.css" /> 
-        <script type="text/javascript" src="lib/reveal.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css" />       
         <link rel="stylesheet" href="index.css" />
@@ -48,7 +52,7 @@
             <h3>Installation</h3>
             <p>The only requirement for this library is jQuery. Make sure you use at least version 2.1.x.
             </p>
-            <p>Copy <span class="code">reveal.js</span> and <span class="code">reveal.css</span> to your project's folder and include them into your web-page as you usually do.
+            <p>Copy <span class="code">reveal.js</span> and <span class="code">reveal.css</span> to your project's folder and include them into your web-page.
             </p>
             <p>If you prefer, you can install it via Bower instead:
             </p>
@@ -56,7 +60,7 @@
             <div class="code">$ bower install mmth-reveal</div>
 
             <h3>Context actions</h3>
-            <p>Use the <span class="code">revealActions</span> function to append context actions to any element on your web-page, excluding <span class="code css">document</span> and <span class="code css">body</span>. The function accepts two arguments.</p>
+            <p>Use the <span class="code">revealContext</span> function to append context actions to any element on your web-page, excluding <span class="code css">document</span> and <span class="code css">body</span>. The function accepts two arguments.</p>
 
             <p>The <span class="code">actions</span> argument is mandatory. It must contain a hash of actions with attachments as keys of the hash. There can be several actions for a single attachment. By default Reveal is fine-tuned to handle up to two actions for a single attachment. An example of the actions list is as follows:
             </p>
@@ -86,7 +90,7 @@
                 <dt><span class="code">actions_css_prefix</span></dt>
                 <dd>This prefix is used while appending a CSS-class with an active action name to the element. Default value is <span class="code">reveal-action-</span>.</dd>
                 <dt><span class="code">activation_threshold</span></dt>
-                <dd>Determines whether the gesture is 'strong' enough to call the <span class="code">complete</span> function (if exists). If it is not 'strong' enough, the <span class="code">cancel</span> function is called instead (if exists). The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's width or height. Default value is <span class="code">0.4</span>.</dd>
+                <dd>Determines whether the element was dragged far enough to call the <span class="code">complete</span> function (if exists). If it is not dragged far enough, the <span class="code">cancel</span> function is called instead (if exists). The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's width or height. Default value is <span class="code">0.4</span>.</dd>
                 <dt><span class="code">offscreen_element_size</span></dt>
                 <dd>Maximum size (width or height) of the container for context actions embedded into the element. The value of this property can be either absolute (number greater than 1) or relative (a number from 0 to 1) to the element's dimensions. Default value is <span class="code">0.5</span>.</dd>
                 <dt><span class="code">action_element_size</span></dt>
@@ -102,14 +106,14 @@
             <div class="example">
                 <div class="example-context">A document to modify</div>
                 <script type="text/javascript">
-                $(".example-context").revealActions({ "left" : "Review", "right" : ["Edit", "Remove"] },
+                $(".example-context").revealContext({ "left" : "Review", "right" : ["Edit", "Remove"] },
                                                     { "action_css_prefix" : "example-context-", 
                                                       "complete" : function(data) 
                                                       { data.element.text("Selected " + data.action) }});
                 </script>
             </div>
 
-            <div class="code">$(".example-context").revealActions
+            <div class="code">$(".example-context").revealContext
 (
   { "left" : "Review", "right" : ["Edit", "Remove"] }, 
   { "action_css_prefix" : "example-context-",
@@ -130,7 +134,7 @@
             <div class="example">
             <div class="example-context-v">Slices of pizza</div>
                 <script type="text/javascript">
-                $(".example-context-v").revealActions({ "top" : ["Yummy", "Delicious"] },
+                $(".example-context-v").revealContext({ "top" : ["Yummy", "Delicious"] },
                                                     { "action_css_prefix" : "example-context-v-",
                                                       "activation_threshold" : 0.7, 
                                                       "complete" : function(data) 
@@ -138,7 +142,7 @@
                 </script>
             </div>
 
-            <div class="code">$(".example-context-v").revealActions(
+            <div class="code">$(".example-context-v").revealContext(
   { "top" : ["Yummy", "Delicious"] },
   { "action_css_prefix" : "example-context-v-", 
     "activation_threshold" : 0.7, 
@@ -157,7 +161,7 @@
                 <li>Corn</li>
             </ul>
                 <script type="text/javascript">
-                $(".example-list li").revealActions({ "right" : function() { return $(this).hasClass("bought") ? "Sell" : "Buy";  } },
+                $(".example-list li").revealContext({ "right" : function() { return $(this).hasClass("bought") ? "Sell" : "Buy";  } },
                                                     { "action_css_prefix" : "example-list-",
                                                       "complete" : function(data) 
                                                       {
@@ -173,7 +177,7 @@
                 </script>
             </div>
 
-            <div class="code">$(".example-list li").revealActions
+            <div class="code">$(".example-list li").revealContext
 (
   { "right" : function() 
               { 
@@ -195,6 +199,37 @@
   }
 );</div>
 
+            <h3>Document actions</h3>
+
+            <p>If you wonder what document actions are, try holding left mouse button near the top or left edge of this window and dragging your mouse from the edge. The source code for document actions here is simple:</p>
+
+<div class="code">$(document).revealContext
+(
+  { 
+    "left" : { "content" : $("&lt;div class='example-doc-left'&gt;LEFT&lt;/div&gt;") }, 
+    "top" :  { "content" : $("&lt;div class='example-doc-top'&gt;TOP&lt;/div&gt;") } 
+  }
+);
+</div>
+
+            <p>Use the <span class="code">revealContext</span> function on the <span class="code">document</span> element to append a panel to the document itself, which can be revealed by dragging mouse from the appropriate corner of the window. The panel will be hidden when user clicks outside its boundaries.
+            </p>
+
+            <p>You can specify <span class="code">top</span>, <span class="code">right</span>, <span class="code">bottom</span>, or <span class="code">left</span> as an attachment. There is a number of optional properties that can be changed for every attachment:</p>
+
+            <dl>
+              <dt><span class="code">content</span></dt>
+              <dd>An HTML element to append as a child element to the panel container, or a function with <span class="code">this</span> set to the panel root element (you can easily append your own elements to it). This property is <span class="code">null</span> by default.</dd>
+              <dt><span class="code">id</span></dt>
+              <dd>The optional identifier of the panel container root element. By default there is no identifier.</dd>
+              <dt><span class="code">inactive_size</span></dt>
+              <dd>Width (for <span class="code">left</span> and <span class="code">right</span> attachments) or height (for <span class="code">top</span> and <span class="code">bottom</span> attachments) of a window region near the edge of the window which will be listening for mouse events. Default value is <span class="code">30</span> pixels.</dd>
+               <dt><span class="code">activation size</span></dt>
+              <dd>Width (for <span class="code">left</span> and <span class="code">right</span> attachments) or height (for <span class="code">top</span> and <span class="code">bottom</span> attachments) of the container after which it will be fully revealed to the user after the dragging operation is stopped. If the value of this property is less than or equal to <span class="code">1</span>, it is treated as a fraction of the <span class="code">container_size</span>. By default this property is set to <span class="code">0.3</span> (30% of <span class="code">container_size</span>).</dd>
+              <dt><span class="code">container_size</span></dt>
+              <dd>Width (for <span class="code">left</span> and <span class="code">right</span> attachments) or height (for <span class="code">top</span> and <span class="code">bottom</span> attachments) of the container itself. Default value is <span class="code">200</span> pixels.</dd>
+            </dl>
+            
             <h3>Questions and feedback</h3>
             <p>You can ask questions by tweeting to <a href="http://twitter.com/dinqe">@dinqe</a>
             or <a href="http://twitter.com/mmth">@mmth</a>. You can write us to <a href="mailto:d@mmth.us">our email</a> as well.

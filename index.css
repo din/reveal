@@ -234,3 +234,21 @@ span.hljs
 {
     background: green;
 }
+
+.example-doc-left
+{
+    color: #aaa;
+    margin-top: 200px; 
+    font-size: 20px;
+    text-align: center;
+}
+
+.example-doc-top
+{
+    color: #aaa;
+    margin-top: 20px; 
+    font-size: 20px;
+    text-align: center;
+}
+
+
